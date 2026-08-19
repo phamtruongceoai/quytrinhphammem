@@ -1,0 +1,41 @@
+# CLAUDE.md — {{PROJECT_NAME}}
+
+Đây là project con thuộc bộ khung quy trình phát triển phần mềm. Quy trình đầy đủ tham khảo tại `../../docs/quy-trinh-phat-trien-phan-mem.md` (nguồn sự thật).
+
+## Stack
+{{STACK}}
+
+## Lệnh thường dùng
+- Cài đặt: <lệnh>
+- Chạy app: <lệnh>
+- Chạy test: <lệnh>
+- Lint: <lệnh>
+
+## Cấu trúc thư mục
+```
+{{PROJECT_NAME}}/
+├── docs/
+│   ├── requirements/   # output của /requirements
+│   ├── adr/             # output của /design
+│   ├── tasks/            # output của /plan-task
+│   ├── pr/                # output của /pr
+│   └── retro/            # output của /retro
+├── CHANGELOG.md
+└── ...                    # code thật
+```
+
+## Quy ước code
+- <style/convention của project này, ví dụ: đặt tên biến, cấu trúc module>
+- Không hardcode secret/API key — đọc từ biến môi trường.
+
+## Quy trình làm việc (theo thứ tự)
+1. `/requirements` — nếu tính năng mới chưa có user story
+2. `/design` — nếu cần quyết định kiến trúc
+3. `/plan-task` — chia nhỏ thành task, chờ duyệt
+4. `/new-feature` — code + test theo từng task
+5. `/code-review` (và `/security-review` nếu cần) — bắt buộc trước khi PR
+6. `/pr` — soạn commit + PR, không tự push
+7. `/release <version>` — khi gộp đủ tính năng cho một bản phát hành
+
+## Ghi chú riêng của project này
+<Bổ sung khi project phát triển: quyết định đặc thù, giới hạn đã biết, v.v.>
