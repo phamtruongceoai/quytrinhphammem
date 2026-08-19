@@ -19,10 +19,11 @@
 ```
 {{PROJECT_NAME}}/
 ├── docs/
-│   ├── requirements/   # output của /requirements
-│   ├── adr/             # output của /design
-│   ├── tasks/            # output của /plan-task
+│   ├── requirements/   # output của /requirements, 1 file / feature-slug
+│   ├── adr/             # output của /design, NNN-<feature-slug>.md
+│   ├── tasks/            # output của /plan-task, 1 file / feature-slug
 │   ├── pr/                # output của /pr
+│   ├── release/           # output của /release (release notes theo version)
 │   └── retro/            # output của /retro
 ├── CHANGELOG.md
 └── ...                    # code thật
@@ -39,7 +40,9 @@
 4. `/new-feature` — code + test theo từng task
 5. `/code-review` (và `/security-review` nếu cần) — bắt buộc trước khi PR
 6. `/pr` — soạn commit + PR, không tự push
-7. `/release <slug> <version>` — khi gộp đủ tính năng cho một bản phát hành
+7. `/release` — khi gộp đủ tính năng cho một bản phát hành
+
+Cú pháp tham số đầy đủ của từng lệnh: xem `../../docs/quy-trinh-phat-trien-phan-mem.md` (nguồn sự thật duy nhất, tránh lặp lại ở đây để khỏi lệch khi cú pháp đổi).
 
 ## Ghi chú riêng của project này
 <Bổ sung khi project phát triển: quyết định đặc thù, giới hạn đã biết, v.v.>

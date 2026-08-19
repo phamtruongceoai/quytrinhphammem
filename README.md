@@ -17,7 +17,8 @@ Nếu trống, tự thiết lập (`git config user.name "..."`, `git config use
 1. Đọc [docs/quy-trinh-phat-trien-phan-mem.md](docs/quy-trinh-phat-trien-phan-mem.md) — nguồn sự thật của toàn bộ quy trình (9 giai đoạn).
 2. Tra nhanh công cụ cho từng giai đoạn: [docs/ban-do-cong-cu.md](docs/ban-do-cong-cu.md).
 3. Chưa quen thuật ngữ (ADR, DoD, semver...)? Xem [docs/glossary.md](docs/glossary.md).
-4. Bắt đầu một dự án mới: tạo thư mục trong `projects/<slug>/`, copy [templates/CLAUDE.md.template](templates/CLAUDE.md.template) thành `projects/<slug>/CLAUDE.md` và điền thông tin, rồi chạy `/requirements <ý tưởng>`.
+4. Bắt đầu một dự án mới: tạo thư mục trong `projects/<project-slug>/`, copy [templates/CLAUDE.md.template](templates/CLAUDE.md.template) thành `projects/<project-slug>/CLAUDE.md` và điền thông tin, rồi chạy `/requirements <ý tưởng>`.
+5. Muốn biết chính khung quy trình này đã thay đổi/được rà soát thế nào theo thời gian: [docs/process-log.md](docs/process-log.md).
 
 ## Cấu trúc
 

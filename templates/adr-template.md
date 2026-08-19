@@ -2,7 +2,7 @@
 
 **Trạng thái:** Đề xuất / Đã chấp nhận / Đã thay thế
 **Ngày:** <yyyy-mm-dd>
-**Liên quan:** requirements/<slug>.md
+**Liên quan:** requirements/<feature-slug>.md
 
 ## Bối cảnh
 <Vấn đề kỹ thuật cần quyết định là gì, ràng buộc nào ảnh hưởng>

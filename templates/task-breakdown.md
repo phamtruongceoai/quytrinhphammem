@@ -1,6 +1,6 @@
 # Task breakdown: <tên tính năng>
 
-Nguồn: requirements/<slug>.md, adr/NNN-<slug>.md
+Nguồn: requirements/<feature-slug>.md, adr/NNN-<feature-slug>.md
 
 ## Task 1: <tên task>
 - **Mục tiêu:** ...

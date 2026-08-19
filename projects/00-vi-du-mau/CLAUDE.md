@@ -19,10 +19,11 @@ Python 3 (chỉ thư viện chuẩn: `argparse`, `json`) + `pytest` cho test. Kh
 ```
 00-vi-du-mau/
 ├── docs/
-│   ├── requirements/   # output của /requirements
+│   ├── requirements/   # output của /requirements (feature-slug: todo-cli)
 │   ├── adr/             # output của /design
 │   ├── tasks/            # output của /plan-task
 │   ├── pr/                # output của /pr
+│   ├── release/           # output của /release (release notes theo version)
 │   └── retro/            # output của /retro
 ├── todo_cli/
 │   ├── __init__.py
@@ -47,7 +48,7 @@ Python 3 (chỉ thư viện chuẩn: `argparse`, `json`) + `pytest` cho test. Kh
 4. `/new-feature` — code + test theo từng task
 5. `/code-review` (và `/security-review` nếu cần) — bắt buộc trước khi PR
 6. `/pr` — soạn commit + PR, không tự push
-7. `/release <slug> <version>` — khi gộp đủ tính năng cho một bản phát hành
+7. `/release` — khi gộp đủ tính năng cho một bản phát hành (cú pháp: xem `../../docs/quy-trinh-phat-trien-phan-mem.md`)
 
 ## Ghi chú riêng của project này
 Đây là project mẫu (00-vi-du-mau) dùng để verify khung quy trình — không phải sản phẩm thật cần duy trì lâu dài.
