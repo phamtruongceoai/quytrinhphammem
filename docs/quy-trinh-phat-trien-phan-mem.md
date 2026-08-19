@@ -7,7 +7,7 @@
 - **Mỗi project cụ thể nằm trong `projects/<slug>/`**, có `CLAUDE.md` riêng (copy từ `templates/CLAUDE.md.template`). Không code trực tiếp ở thư mục gốc.
 - **3 giai đoạn đầu (Yêu cầu, Thiết kế, Lập kế hoạch) luôn dừng lại chờ người duyệt** trước khi sang giai đoạn kế tiếp — Claude không tự ý code khi chưa có yêu cầu/thiết kế/kế hoạch được chốt.
 - **Dùng skill có sẵn của Claude Code khi có thể**, không tự tạo command trùng chức năng:
-  - `/init` — sinh CLAUDE.md khởi điểm cho project mới
+  - `/init` — làm giàu CLAUDE.md dựa trên code đã có (tuỳ chọn, chạy sau khi project đã có code thật — không hữu ích khi project còn trống)
   - `/code-review` — review chất lượng code (bug, đơn giản hoá, hiệu năng)
   - `/security-review` — review bảo mật khi đụng auth/dữ liệu người dùng/input từ bên ngoài
   - `/simplify` — dọn code trước khi PR
@@ -22,11 +22,11 @@
 | 1 | Ý tưởng & yêu cầu | `/requirements` | Có |
 | 2 | Thiết kế kiến trúc | `/design` | Có |
 | 3 | Lập kế hoạch/breakdown task | `/plan-task` | Có |
-| 4 | Coding | `/init` (lần đầu) + `/new-feature` | Không (nhưng báo cáo file đã đổi) |
+| 4 | Coding | `/new-feature` (+ `/init` tuỳ chọn sau khi có code) | Không (nhưng báo cáo file đã đổi) |
 | 5 | Testing | Tích hợp trong `/new-feature` + skill `run` | Không |
 | 6 | Code review | `/code-review`, `/security-review`, `/simplify` | Có (đọc kết quả trước khi sang PR) |
 | 7 | Commit/PR | `/pr` | Có (không tự push) |
-| 8 | CI/CD & Release | `/release <version>` | Có (chỉ tag khi xác nhận) |
+| 8 | CI/CD & Release | `/release <slug> <version>` | Có (chỉ tag khi xác nhận) |
 | 9 | Bảo trì/changelog | `/retro`, tái dùng `/new-feature` cho bugfix | Không bắt buộc |
 
 ---
@@ -51,7 +51,7 @@
 
 **Input:** Requirements + ADR đã duyệt.
 
-**Output:** `projects/<slug>/docs/tasks/<slug>.md` (điền theo `templates/task-breakdown.md`) — danh sách task nhỏ, mỗi task có mục tiêu, file liên quan, Definition of Done (DoD), đánh dấu task rủi ro cao. Đồng thời tạo TodoWrite nội bộ để theo dõi tiến độ trong phiên làm việc.
+**Output:** `projects/<slug>/docs/tasks/<slug>.md` (điền theo `templates/task-breakdown.md`) — danh sách task nhỏ, mỗi task có mục tiêu, file liên quan, Definition of Done (DoD), đánh dấu task rủi ro cao. Nếu công cụ theo dõi task (TodoWrite) khả dụng trong phiên làm việc, tạo thêm danh sách tương ứng — không bắt buộc nếu môi trường không hỗ trợ.
 
 **Cách dùng Claude Code:** `/plan-task <slug>`. Nếu thiếu requirements/ADR, Claude sẽ đề nghị chạy `/requirements`/`/design` trước thay vì tự suy diễn. Dừng lại, **không code**, chờ duyệt danh sách task.
 
@@ -62,7 +62,7 @@
 **Output:** Code + test tương ứng, nằm trong `projects/<slug>/`.
 
 **Cách dùng Claude Code:**
-- Nếu là project hoàn toàn mới: chạy skill `/init` trong `projects/<slug>/` để Claude tự sinh CLAUDE.md dựa trên code thật (nếu đã có), sau đó đối chiếu/merge với `templates/CLAUDE.md.template` để đảm bảo đủ mục quy trình.
+- Nếu là project hoàn toàn mới (chưa có CLAUDE.md): tạo CLAUDE.md trực tiếp từ `templates/CLAUDE.md.template` (dựa trên requirements/ADR đã có), không cần chờ có code mới tạo. `/init` (skill có sẵn) chỉ nên chạy **sau khi đã có code thật** như bước tuỳ chọn để làm giàu thêm CLAUDE.md — chạy `/init` khi project còn trống gần như không có gì để phân tích.
 - Với từng task: `/new-feature <mô tả task hoặc số thứ tự task>`. Claude đọc CLAUDE.md của project con + task đã duyệt, code đúng phạm vi, viết test theo DoD, không hardcode secret, bám theo pattern code đã có.
 
 ## Giai đoạn 5 — Testing
@@ -92,7 +92,7 @@ Có thể gộp review sau nhiều task nhỏ, rủi ro thấp (đỡ tốn th�
 
 **Input:** Code đã qua review ở giai đoạn 6.
 
-**Output:** `projects/<slug>/docs/pr/<slug>-<task>.md` (điền theo `templates/pr-checklist.md`) + commit message soạn sẵn.
+**Output:** `projects/<slug>/docs/pr/<slug>-<mô-tả-ngắn>.md` (điền theo `templates/pr-checklist.md`) + commit message soạn sẵn. Một PR không nhất thiết ứng với 1 task — có thể gộp nhiều task nhỏ, đặt tên theo nội dung PR chứ không ép theo tên task.
 
 **Cách dùng Claude Code:** `/pr <mô tả>`. Claude xác nhận đã chạy `/code-review` (và `/security-review` nếu cần) trước khi cho phép tiếp tục, điền checklist dựa trên diff thật, soạn commit message theo Conventional Commits và PR description (Summary/Changes/Test plan). **Không tự ý `git push` hay tạo PR thật** — luôn đưa ra để người dùng xác nhận.
 
@@ -102,7 +102,7 @@ Có thể gộp review sau nhiều task nhỏ, rủi ro thấp (đỡ tốn th�
 
 **Output:** `CHANGELOG.md` cập nhật (định dạng Keep a Changelog), version bump theo semver, `RELEASE_NOTES` cho version mới.
 
-**Cách dùng Claude Code:** `/release <version>`. Claude liệt kê commit từ tag gần nhất, xác nhận test pass, chuyển mục "Unreleased" sang version mới, bump version ở đúng file khai báo (package.json/pyproject.toml/`<package>/__init__.py` nếu project không có packaging/...), viết release notes từ `templates/release-notes-template.md`. **Chỉ tạo git tag khi được xác nhận rõ ràng.**
+**Cách dùng Claude Code:** `/release <slug> <version>`. Claude liệt kê commit từ tag gần nhất, xác nhận test pass, chuyển mục "Unreleased" sang version mới, bump version ở đúng file khai báo (package.json/pyproject.toml/`<package>/__init__.py` nếu project không có packaging/...), viết release notes từ `templates/release-notes-template.md`. **Chỉ tạo git tag khi được xác nhận rõ ràng.**
 
 **Đặt tên tag:** repo này chứa nhiều project con (`projects/<slug>/`) dùng chung một lịch sử git — tag phải gắn slug để không đụng nhau giữa các project, dạng `<slug>-v<version>` (vd `todo-cli-v0.1.0`), thay vì `v<version>` trần.
 

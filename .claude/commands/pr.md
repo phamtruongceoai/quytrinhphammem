@@ -5,7 +5,7 @@ Chuẩn bị PR cho: $ARGUMENTS
 Việc cần làm:
 1. Xác nhận đã chạy `/code-review` cho thay đổi này (và `/security-review` nếu đụng auth/dữ liệu người dùng/input bên ngoài). Nếu chưa, dừng lại và đề nghị chạy trước — không tự bỏ qua bước review.
 2. Xem diff thật (`git diff`/`git status`) để điền checklist chính xác, không đoán.
-3. Ghi vào `projects/<slug>/docs/pr/<slug>-<task>.md`, dựa theo `templates/pr-checklist.md`.
+3. Ghi vào `projects/<slug>/docs/pr/<slug>-<mô-tả-ngắn>.md`, dựa theo `templates/pr-checklist.md`. Một PR không nhất thiết ứng với 1 task — có thể gộp nhiều task, đặt tên theo nội dung PR.
 4. Soạn commit message theo Conventional Commits (type(scope): mô tả ngắn).
 5. Soạn PR description (Summary / Changes / Test plan) nếu sẽ push lên GitHub thật.
 

@@ -47,7 +47,7 @@ Python 3 (chỉ thư viện chuẩn: `argparse`, `json`) + `pytest` cho test. Kh
 4. `/new-feature` — code + test theo từng task
 5. `/code-review` (và `/security-review` nếu cần) — bắt buộc trước khi PR
 6. `/pr` — soạn commit + PR, không tự push
-7. `/release <version>` — khi gộp đủ tính năng cho một bản phát hành
+7. `/release <slug> <version>` — khi gộp đủ tính năng cho một bản phát hành
 
 ## Ghi chú riêng của project này
 Đây là project mẫu (00-vi-du-mau) dùng để verify khung quy trình — không phải sản phẩm thật cần duy trì lâu dài.

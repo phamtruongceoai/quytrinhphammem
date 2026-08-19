@@ -39,7 +39,7 @@
 4. `/new-feature` — code + test theo từng task
 5. `/code-review` (và `/security-review` nếu cần) — bắt buộc trước khi PR
 6. `/pr` — soạn commit + PR, không tự push
-7. `/release <version>` — khi gộp đủ tính năng cho một bản phát hành
+7. `/release <slug> <version>` — khi gộp đủ tính năng cho một bản phát hành
 
 ## Ghi chú riêng của project này
 <Bổ sung khi project phát triển: quyết định đặc thù, giới hạn đã biết, v.v.>
