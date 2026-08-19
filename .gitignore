@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+
+# Dữ liệu runtime của project mẫu, không phải nguồn thật
+projects/00-vi-du-mau/todos.json
