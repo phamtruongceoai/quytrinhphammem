@@ -5,6 +5,10 @@
 ## Stack
 {{STACK}}
 
+## Version
+- File khai báo version: <package.json / pyproject.toml / `<package>/__init__.py` (`__version__ = "x.y.z"`) nếu project không dùng packaging>
+- Tag release dùng format `{{PROJECT_NAME}}-v<version>` (xem `/release`) — không dùng `v<version>` trần vì repo chứa nhiều project con chung lịch sử git.
+
 ## Lệnh thường dùng
 - Cài đặt: <lệnh>
 - Chạy app: <lệnh>

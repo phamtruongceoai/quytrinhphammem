@@ -86,6 +86,8 @@
 
 Đọc kỹ kết quả trước khi sang giai đoạn PR — không bỏ qua finding mà không có lý do.
 
+Có thể gộp review sau nhiều task nhỏ, rủi ro thấp (đỡ tốn thời gian chạy lặp lại); nên review riêng ngay sau từng task nếu task đó được đánh dấu rủi ro Cao trong task breakdown — gộp review ở nhóm task rủi ro cao dễ làm bug tích tụ, khó truy về đúng task gây lỗi.
+
 ## Giai đoạn 7 — Commit / PR
 
 **Input:** Code đã qua review ở giai đoạn 6.
@@ -100,7 +102,9 @@
 
 **Output:** `CHANGELOG.md` cập nhật (định dạng Keep a Changelog), version bump theo semver, `RELEASE_NOTES` cho version mới.
 
-**Cách dùng Claude Code:** `/release <version>`. Claude liệt kê commit từ tag gần nhất, xác nhận test pass, chuyển mục "Unreleased" sang version mới, bump version ở đúng file khai báo (package.json/pyproject.toml/...), viết release notes từ `templates/release-notes-template.md`. **Chỉ tạo git tag khi được xác nhận rõ ràng.**
+**Cách dùng Claude Code:** `/release <version>`. Claude liệt kê commit từ tag gần nhất, xác nhận test pass, chuyển mục "Unreleased" sang version mới, bump version ở đúng file khai báo (package.json/pyproject.toml/`<package>/__init__.py` nếu project không có packaging/...), viết release notes từ `templates/release-notes-template.md`. **Chỉ tạo git tag khi được xác nhận rõ ràng.**
+
+**Đặt tên tag:** repo này chứa nhiều project con (`projects/<slug>/`) dùng chung một lịch sử git — tag phải gắn slug để không đụng nhau giữa các project, dạng `<slug>-v<version>` (vd `todo-cli-v0.1.0`), thay vì `v<version>` trần.
 
 Về CI/CD thật (GitHub Actions, v.v.): vì quy trình này không gắn cứng vào một stack, việc thiết lập pipeline CI cụ thể (lint/test/build tự động khi push) nên làm ở giai đoạn 4 của từng project con, dựa theo stack thực tế của project đó — tham khảo cấu trúc `.github/workflows/` chuẩn nếu deploy lên GitHub.
 

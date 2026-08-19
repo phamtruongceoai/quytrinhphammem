@@ -5,6 +5,10 @@
 ## Stack
 Python 3 (chỉ thư viện chuẩn: `argparse`, `json`) + `pytest` cho test. Không dùng framework/database ngoài.
 
+## Version
+- File khai báo version: `todo_cli/__init__.py` (`__version__`) — project không dùng packaging (pyproject.toml/setup.py).
+- Tag release dùng format `todo-cli-v<version>` (vd `todo-cli-v0.1.0`).
+
 ## Lệnh thường dùng
 - Cài đặt: `pip install -r requirements-dev.txt`
 - Chạy app: `python -m todo_cli <add|list|done|delete> ...`
